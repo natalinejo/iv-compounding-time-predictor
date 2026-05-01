@@ -4,7 +4,7 @@
 **Advisor:** Scott J. Richter, PhD\
 **Department:** UNCG Mathematics and Statistics\
 **Major:** MS in Applied Statistics\
-**Live App URL:** <https://ndomikis.shinyapps.io/sta698_app/>
+**Live App URL:** <https://ndomikis.shinyapps.io/sta698_app/>\
 **Explanation/Presentation URL:** <https://youtu.be/9CMvImQtSPQ>
 
 ------------------------------------------------------------------------
