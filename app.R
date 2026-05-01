@@ -231,7 +231,7 @@ predict_time <- function(inputs) {
   # STEP 1: determine which predictor groups are available
   # -------------------------------------------------------------------
   # "provided" holds the group names for any input the user actually supplied.
-  # THE ORDER HERE MUST MATCH the order of predictor_groups in background_code.R,
+  # THE ORDER HERE MUST MATCH the order of predictor_groups in background code.R,
   # because combo_tag is built by pasting these names together
   # if the order is not the same, the generated tag won't match the saved file names
   # current canonical order:
@@ -269,7 +269,7 @@ predict_time <- function(inputs) {
   # -------------------------------------------------------------------
   # STEP 2: build the single-row prediction data frame (newdata)
   # -------------------------------------------------------------------
-  # all transformations here mirror those applied in background_code.R Section 2.
+  # all transformations here mirror those applied in background code.R Section 2.
   # if you change the training-time transformations, you must update this block
   # to match or predictions will be on the wrong scale
   
@@ -714,32 +714,6 @@ server <- function(input, output, session) {
     rounded <- as.integer(round(tmp))
     
     # only update if the value actually changed (avoid triggering a reactive feedback loop)
-    if (!isTRUE(all.equal(tmp, rounded))) {
-      updateNumericInput(session, "vials", value = rounded)
-    }
-  })
-  
-  # ---------------------------------------------------------------------------
-  # input auto-correction: vials
-  # ---------------------------------------------------------------------------
-  vials_debounced <- debounce(reactive(input$vials), 1500)
-  observeEvent(vials_debounced(), {
-    raw <- vials_debounced()
-    if (is.null(raw) || is.na(raw))
-      return()
-    
-    tmp <- suppressWarnings(as.numeric(raw))
-    
-    # if it's not a number, or if it's less than 1 (0 or negative)
-    # update the UI to blank (NA) and halt this block
-    if (is.na(tmp) || tmp < 1) {
-      updateNumericInput(session, "vials", value = NA)
-      return()
-    }
-    
-    rounded <- as.integer(round(tmp))
-    
-    # only update if the value actually changed
     if (!isTRUE(all.equal(tmp, rounded))) {
       updateNumericInput(session, "vials", value = rounded)
     }
